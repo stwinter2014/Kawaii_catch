@@ -1,7 +1,7 @@
 import pygame
 import random
 import Sprites_init
-
+import Random_pong
 
 def Level_1():
     pygame.init()
@@ -31,7 +31,8 @@ def Level_1():
     claw.rect.x = size[0]//2 - claw_image.get_width()//2
     claw.rect.y = size[1] - claw_image.get_height()
     claw_list.add(claw)
-    
+
+    timer = 0
     for i in range(1):
         pong_green = Sprites_init.Pong_green()
         pong_blue = Sprites_init.Pong_blue()
@@ -59,30 +60,10 @@ def Level_1():
             if event.type == pygame.QUIT:
                 done = True
         pong_green_list.update()
-        if pong_green.rect.y == 0:
-            pong_green = Sprites_init.Pong_green()
-            pong_green.rect.x = (size[0] - guy_green.get_width()*4)//5
-            pong_green.rect.y = - 10 - guy_green.get_height()
-            pong_green_list.add(pong_green)
-            pong_all_list.add(pong_green)
-            
-            pong_blue = Sprites_init.Pong_blue()
-            pong_blue.rect.x = pong_green.rect.x + guy_green.get_width() + (size[0] - guy_green.get_width()*4)//5
-            pong_blue.rect.y = - 10 - guy_blue.get_height()
-            pong_blue_list.add(pong_blue)
-            pong_all_list.add(pong_blue)
-            
-            pong_red = Sprites_init.Pong_red()
-            pong_red.rect.x = pong_blue.rect.x + guy_blue.get_width() + (size[0] - guy_green.get_width()*4)//5
-            pong_red.rect.y = - 10 - guy_red.get_height()
-            pong_red_list.add(pong_red)
-            pong_all_list.add(pong_red)
-            
-            pong_yellow = Sprites_init.Pong_yellow()
-            pong_yellow.rect.x = pong_red.rect.x + guy_red.get_width() + (size[0] - guy_green.get_width()*4)//5
-            pong_yellow.rect.y = - 10 - guy_yellow.get_height()
-            pong_yellow_list.add(pong_yellow)
-            pong_all_list.add(pong_yellow)
+        timer += 1
+        if timer%43 == 0:
+            print(timer)
+            Random_pong.random_throw(pong_green_list, pong_blue_list, pong_red_list, pong_yellow_list, pong_all_list, guy_green, guy_blue, guy_red, guy_yellow)
         claw_hit_list = pygame.sprite.spritecollide(claw, pong_all_list, False)
         for pong_green in claw_hit_list:
             done = True
