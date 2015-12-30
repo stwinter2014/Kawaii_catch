@@ -1,5 +1,5 @@
 import pygame
-
+import random
 pygame.init()
 size = [390, 730]
 white = [255, 255, 255]
@@ -46,4 +46,31 @@ class Pong_yellow(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
     def update(self):
         self.rect.y += 1
+
+class Pong_brown(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.image.load("pong5_1.png").convert()
+        self.image.set_colorkey(white)
+        self.rect = self.image.get_rect()
+    def update(self):
+        self.rect.y += 1
+
+class Pong_purple(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.image.load("pong6_1.png").convert()
+        self.image.set_colorkey(white)
+        self.rect = self.image.get_rect()
+    def update(self):
+        self.rect.y += 1
+
+class Pong_weapon(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.image.load("pong2_1.png").convert()
+        self.image.set_colorkey(white)
+        self.rect = self.image.get_rect()
+    """def update(self):
+        self.rect.y += 1"""
 
