@@ -32,8 +32,25 @@ def Level_1():
     claw_list = pygame.sprite.Group()
 
     weapon_list = pygame.sprite.Group()
-    pong_weap = Sprites_init.Pong_weapon()
-    weapon_list.add(pong_weap)
+    weapon_ch = random.randint(0,5)
+    if weapon_ch == 0:
+        pong_weap = Sprites_init.Pong_weapon_1()
+        weapon_list.add(pong_weap)
+    if weapon_ch == 1:
+        pong_weap = Sprites_init.Pong_weapon_2()
+        weapon_list.add(pong_weap)
+    if weapon_ch == 2:
+        pong_weap = Sprites_init.Pong_weapon_3()
+        weapon_list.add(pong_weap)
+    if weapon_ch == 3:
+        pong_weap = Sprites_init.Pong_weapon_4()
+        weapon_list.add(pong_weap)
+    if weapon_ch == 4:
+        pong_weap = Sprites_init.Pong_weapon_5()
+        weapon_list.add(pong_weap)
+    if weapon_ch == 5:
+        pong_weap = Sprites_init.Pong_weapon_6()
+        weapon_list.add(pong_weap)
     
     pause = (size[0] - guy_red.get_width()*8)//9
     movement = [pause, pause*2 + claw_image.get_width(), pause*3 + claw_image.get_width()*2,
@@ -139,7 +156,8 @@ def Level_1():
             pong_blue_list.add(pong_blue)
             pong_all_list.add(pong_blue)
             weapon_list.remove(pong_weap)
-            pong_weap = Sprites_init.Pong_weapon()
+            
+            pong_weap = Sprites_init.Pong_weapon_2()
             weapon_list.add(pong_weap)
             pong_weap.rect.x = movement[y]
             pong_weap.rect.y = size[1] - claw_image.get_height() - 10
