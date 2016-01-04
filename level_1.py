@@ -30,7 +30,12 @@ def Level_1():
     pong_purple_list = pygame.sprite.Group()
     pong_all_list = pygame.sprite.Group()
     claw_list = pygame.sprite.Group()
+    
+    class Get_rect():
+        get_x = 0
+        get_y = 0
 
+    Rect = Get_rect()
     weapon_list = pygame.sprite.Group()
     weapon_ch = random.randint(0,5)
     if weapon_ch == 0:
@@ -58,12 +63,16 @@ def Level_1():
                 pause*7 + claw_image.get_width()*6, pause*8 + claw_image.get_width()*7]
     claw = Sprites_init.Claw()
     claw_list.add(claw)
+    
     shot = 0
     y = 3
     timer = 0
     weap_mov = 0
+    removal = 
+    
     ness_x = 0
     ness_y = 0
+    
     Random_pong.random_throw(pong_green_list, pong_blue_list, pong_red_list, pong_yellow_list, pong_brown_list, pong_purple_list,
                              pong_all_list, guy_green, guy_blue, guy_red, guy_yellow, guy_brown, guy_purple)
     background = pygame.image.load('wallpaper_kawaii.jpg').convert()
@@ -96,8 +105,108 @@ def Level_1():
                     y += 0
         timer += 1
         if timer%43 == 0:
-            Random_pong.random_throw(pong_green_list, pong_blue_list, pong_red_list, pong_yellow_list, pong_brown_list, pong_purple_list,
-                                     pong_all_list, guy_green, guy_blue, guy_red, guy_yellow, guy_brown, guy_purple)
+            """
+            print(len(pong_blue_list))
+            for pong_blue in pong_blue_list:
+                Rect.get_x = pong_blue.rect.x
+                Rect.get_y = pong_blue.rect.y
+                print(Rect.get_x)
+                print(Rect.get_y)
+                print('da')
+            """
+            choice = random.randint(0, 5)
+            if choice == 0:
+                pong_green = Sprites_init.Pong_green()
+                pong_green_list.add(pong_green)
+                pong_all_list.add(pong_green)
+                pong_green.rect.x = (size[0] - guy_green.get_width()*8)//9
+                pong_green.rect.y = - guy_green.get_height()
+            elif choice == 1:
+                pong_blue = Sprites_init.Pong_blue()
+                pong_blue.rect.x = (size[0] - guy_blue.get_width()*8)//9
+                pong_blue.rect.y = - guy_blue.get_height()
+                pong_blue_list.add(pong_blue)
+                pong_all_list.add(pong_blue)
+            elif choice == 2: 
+                pong_red = Sprites_init.Pong_red()
+                pong_red.rect.x = (size[0] - guy_red.get_width()*8)//9
+                pong_red.rect.y = - guy_red.get_height()
+                pong_red_list.add(pong_red)
+                pong_all_list.add(pong_red)
+            elif choice == 3:
+                pong_yellow = Sprites_init.Pong_yellow()
+                pong_yellow.rect.x = (size[0] - guy_yellow.get_width()*8)//9
+                pong_yellow.rect.y = - guy_yellow.get_height()
+                pong_yellow_list.add(pong_yellow)
+                pong_all_list.add(pong_yellow)
+            elif choice == 4:
+                pong_brown = Sprites_init.Pong_brown()
+                pong_brown.rect.x = (size[0] - guy_brown.get_width()*8)//9
+                pong_brown.rect.y = - guy_brown.get_height()
+                pong_brown_list.add(pong_brown)
+                pong_all_list.add(pong_brown)
+            elif choice == 5:
+                pong_purple = Sprites_init.Pong_purple()
+                pong_purple.rect.x = (size[0] - guy_purple.get_width()*8)//9
+                pong_purple.rect.y = - guy_purple.get_height()
+                pong_purple_list.add(pong_purple)
+                pong_all_list.add(pong_purple)
+            latest_choice = choice
+            choice = 0
+            for i in range (7):
+                choice = random.randint(0, 5)
+                if latest_choice == 0:
+                    nesses_rect = pong_green.rect.x
+                elif latest_choice == 1:
+                    nesses_rect = pong_blue.rect.x
+                elif latest_choice == 2:
+                    nesses_rect = pong_red.rect.x
+                elif latest_choice == 3:
+                    nesses_rect = pong_yellow.rect.x
+                elif latest_choice == 4:
+                    nesses_rect = pong_brown.rect.x
+                elif latest_choice == 5:
+                    nesses_rect = pong_purple.rect.x
+                if choice == 0:
+                    pong_green = Sprites_init.Pong_green()
+                    pong_green_list.add(pong_green)
+                    pong_all_list.add(pong_green)
+                    pong_green.rect.x = nesses_rect + guy_green.get_width() + (size[0] - guy_green.get_width()*8)//9
+                    pong_green.rect.y = - guy_green.get_height()    
+                elif choice == 1:
+                    pong_blue = Sprites_init.Pong_blue()
+                    pong_blue.rect.x = nesses_rect + guy_blue.get_width() + (size[0] - guy_blue.get_width()*8)//9
+                    pong_blue.rect.y = - guy_blue.get_height()
+                    pong_blue_list.add(pong_blue)
+                    pong_all_list.add(pong_blue)
+                elif choice == 2:
+                    pong_red = Sprites_init.Pong_red()
+                    pong_red.rect.x = nesses_rect + guy_red.get_width() + (size[0] - guy_red.get_width()*8)//9
+                    pong_red.rect.y = - guy_red.get_height()
+                    pong_red_list.add(pong_red)
+                    pong_all_list.add(pong_red)
+                elif choice == 3:
+                    pong_yellow = Sprites_init.Pong_yellow()
+                    pong_yellow.rect.x = nesses_rect + guy_yellow.get_width() + (size[0] - guy_yellow.get_width()*8)//9
+                    pong_yellow.rect.y = - guy_yellow.get_height()
+                    pong_yellow_list.add(pong_yellow)
+                    pong_all_list.add(pong_yellow)
+                elif choice == 4:
+                    pong_brown = Sprites_init.Pong_brown()
+                    pong_brown.rect.x = nesses_rect + guy_brown.get_width() + (size[0] - guy_brown.get_width()*8)//9
+                    pong_brown.rect.y = - guy_brown.get_height()
+                    pong_brown_list.add(pong_brown)
+                    pong_all_list.add(pong_brown)
+                elif choice == 5:
+                    pong_purple = Sprites_init.Pong_purple()
+                    pong_purple.rect.x = nesses_rect + guy_purple.get_width() + (size[0] - guy_purple.get_width()*8)//9
+                    pong_purple.rect.y = - guy_purple.get_height()
+                    pong_purple_list.add(pong_purple)
+                    pong_all_list.add(pong_purple)
+                latest_choice = choice
+                choice = 0
+                nesses_rect = 0
+        
         claw_hit_list = pygame.sprite.spritecollide(claw, pong_all_list, False)
         for pong in claw_hit_list:
             done = True
@@ -150,15 +259,72 @@ def Level_1():
             pong_weap.rect.y -= weap_mov
         elif shot == 2:
             weap_mov = 0
-            pong_blue = Sprites_init.Pong_blue()
-            pong_blue.rect.x = ness_x
-            pong_blue.rect.y = ness_y
-            pong_blue_list.add(pong_blue)
-            pong_all_list.add(pong_blue)
+            if weapon_ch == 0:
+                for pong_green in pong_green_list:
+                    Rect.get_x = pong_green.rect.x
+                    Rect.get_y = pong_green.rect.y
+                    if Rect.get_x == ness_x and (Rect.get_y - ness_y) < guy_green.get_width() + (size[0] - guy_green.get_width()*8)//9 +20:
+                        removal = 1
+                    print(Rect.get_x, Rect.get_y)
+                #print(rect_coll)
+
+            if weapon_ch == 0:
+                pong_green = Sprites_init.Pong_green()
+                pong_green.rect.x = ness_x
+                pong_green.rect.y = ness_y
+                pong_green_list.add(pong_green)
+                pong_all_list.add(pong_green)
+            if weapon_ch == 1: 
+                pong_blue = Sprites_init.Pong_blue()
+                pong_blue.rect.x = ness_x
+                pong_blue.rect.y = ness_y
+                pong_blue_list.add(pong_blue)
+                pong_all_list.add(pong_blue)
+            if weapon_ch == 2:
+                pong_red = Sprites_init.Pong_red()
+                pong_red.rect.x = ness_x
+                pong_red.rect.y = ness_y
+                pong_red_list.add(pong_red)
+                pong_all_list.add(pong_red)
+            if weapon_ch == 3:
+                pong_yellow = Sprites_init.Pong_yellow()
+                pong_yellow.rect.x = ness_x
+                pong_yellow.rect.y = ness_y
+                pong_yellow_list.add(pong_yellow)
+                pong_all_list.add(pong_yellow)
+            if weapon_ch == 4:
+                pong_brown = Sprites_init.Pong_brown()
+                pong_brown.rect.x = ness_x
+                pong_brown.rect.y = ness_y
+                pong_brown_list.add(pong_brown)
+                pong_all_list.add(pong_brown)
+            if weapon_ch == 5:
+                pong_purple = Sprites_init.Pong_purple()
+                pong_purple.rect.x = ness_x
+                pong_purple.rect.y = ness_y
+                pong_purple_list.add(pong_purple)
+                pong_all_list.add(pong_purple)
+            weapon_ch = 0
             weapon_list.remove(pong_weap)
-            
-            pong_weap = Sprites_init.Pong_weapon_2()
-            weapon_list.add(pong_weap)
+            weapon_ch = random.randint(0,5)
+            if weapon_ch == 0:
+                pong_weap = Sprites_init.Pong_weapon_1()
+                weapon_list.add(pong_weap)
+            if weapon_ch == 1:
+                pong_weap = Sprites_init.Pong_weapon_2()
+                weapon_list.add(pong_weap)
+            if weapon_ch == 2:
+                pong_weap = Sprites_init.Pong_weapon_3()
+                weapon_list.add(pong_weap)
+            if weapon_ch == 3:
+                pong_weap = Sprites_init.Pong_weapon_4()
+                weapon_list.add(pong_weap)
+            if weapon_ch == 4:
+                pong_weap = Sprites_init.Pong_weapon_5()
+                weapon_list.add(pong_weap)
+            if weapon_ch == 5:
+                pong_weap = Sprites_init.Pong_weapon_6()
+                weapon_list.add(pong_weap)
             pong_weap.rect.x = movement[y]
             pong_weap.rect.y = size[1] - claw_image.get_height() - 10
             shot = 0
